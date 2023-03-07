@@ -63,10 +63,5 @@ public class NewContactAT_Page {
         BrowserUtils.sleep(1);
         WebElement dayElement=Driver.getDriver().findElement(By.xpath("//a[.='"+day+"']"));
         dayElement.click();
-
-
     }
-
-
-
 }
