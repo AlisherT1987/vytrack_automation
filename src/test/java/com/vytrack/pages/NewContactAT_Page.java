@@ -30,9 +30,19 @@ public class NewContactAT_Page {
     public WebElement saveAndCloseButton;
     @FindBy(xpath = "//div[@id='flash-messages']")
     public WebElement msg_save;
+    @FindBy(tagName = "iframe")
+    public WebElement frame;
+    @FindBy(xpath = "//body[@id='tinymce']")
+    public WebElement bodyFrame;
+
+    @FindBy(xpath = "(//button[@class='removeRow btn btn-action btn-link'])[3]")
+    public WebElement closeAddress;
+
+    @FindBy(xpath = "//input[@type='checkbox' and @value='1']")
+    public WebElement salesGroup;
 
 
-//button[contains(text(),'Save and Close')])[2]
+
 
     public void loginAsUser() {
         txt_userName.sendKeys(ConfigurationReader.getProperty("driver_username"));

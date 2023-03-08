@@ -1,7 +1,7 @@
 @US_1
 Feature: Create new contact
   User story:As a user, I want create new contact with valid credentials
-  AC1: As a user get a link "Create Contact" on main page and click it. 
+  AC1: As a user get a link "Create Contact" on main page and click it.
   AC2:As a user should be create new contact with valid credentials and save it.
   @PRG1-154 @smoke
   Scenario: As a user  get a link "Create Contact" on main page

@@ -37,6 +37,7 @@ public class NewContactStepDefs {
 
     @Then("User enters all credentials")
     public void user_enters_all_credentials(Map<String,String>list) {
+
         for (Map.Entry<String, String> each : list.entrySet()) {
             if (each.getKey().equals("method") || each.getKey().equals("gender") || each.getKey().equals("source")) {
                 vtPage.dropdownChoice(each.getKey(), each.getValue());
@@ -54,6 +55,14 @@ public class NewContactStepDefs {
                 BrowserUtils.sleep(1);
             }
         }
+        BrowserUtils.sleep(2);
+        Driver.getDriver().switchTo().frame(vtPage.frame);
+        vtPage.bodyFrame.sendKeys("Hello World");
+        Driver.getDriver().switchTo().parentFrame();
+        BrowserUtils.sleep(2);
+        vtPage.closeAddress.click();
+        BrowserUtils.sleep(2);
+        vtPage.salesGroup.click();
 
     }
     @Then("User click Save and Close button")
