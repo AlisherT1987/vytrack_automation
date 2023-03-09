@@ -1,6 +1,11 @@
 package com.vytrack.utilities;
 
 import org.junit.Assert;
+
+import org.monte.media.Format;
+import org.monte.media.FormatKeys;
+import org.monte.media.math.Rational;
+import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -8,18 +13,25 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static org.monte.media.FormatKeys.*;
+import static org.monte.media.VideoFormatKeys.*;
+
+
 public class BrowserUtils {
 
+
+
     /*
-    This method will accept int (in seconds)
-    and execute Thread.sleep method for given duration
-    Arg: int second
-     */
+        This method will accept int (in seconds)
+        and execute Thread.sleep method for given duration
+        Arg: int second
+         */
     public static void sleep(int second){
         second *= 1000;
         try{
@@ -481,6 +493,28 @@ public class BrowserUtils {
      */
     public static void waitForPresenceOfElement(By by, long time) {
         new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(time)).until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+    //For video recording
+     public static ScreenRecorder screenRecorder;
+    public static void startRecording() throws Exception
+    {
+    GraphicsConfiguration gc =
+    GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+    screenRecorder = new ScreenRecorder(gc,
+            new Format(MediaTypeKey, FormatKeys.MediaType.FILE,
+                    MimeTypeKey,MIME_AVI),
+            new Format(MediaTypeKey, FormatKeys.MediaType.VIDEO,
+                    EncodingKey,ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,
+                   CompressorNameKey,
+                    ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE,DepthKey, 24, FrameRateKey,
+     Rational.valueOf(15),QualityKey, 1.0f,KeyFrameIntervalKey, 15 * 60),new
+     Format(MediaTypeKey,MediaType.VIDEO, EncodingKey, "black",FrameRateKey,
+      Rational.valueOf(30)),null);
+    screenRecorder.start();
+    }
+    public static void stopRecording() throws Exception
+    {
+        screenRecorder.stop();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.vytrack.step_definitions;
+package com.vytrack.failedTestsHooks;
 
 import com.vytrack.utilities.BrowserUtils;
 import com.vytrack.utilities.Driver;
@@ -24,6 +24,17 @@ public class Hooks {
         BrowserUtils.sleep(2);
         Driver.closeDriver();
     }
+    @Before
+    public void setupScenario() throws Exception {
+        System.out.println("it starts recording");
+        BrowserUtils.startRecording();
+    }
+    @After
+    public void teardownScenario() throws Exception {
+        BrowserUtils.stopRecording();
+        System.out.println("it stops recording");
+    }
+
 
 
 }
